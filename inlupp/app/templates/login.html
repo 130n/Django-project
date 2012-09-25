@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+
+{{error}}
+
+<div class="form">
+<form action="" method="post">
+	{% csrf_token %}
+
+	uname: {{login_form.username}}
+	<br>
+	passw: {{login_form.password}}
+	<br>
+	<input type=submit> </input>
+	</form>
+</div>
+
+Inte registrerad?
+<a href="/register">Skapa konto</a>
+{%endblock%}

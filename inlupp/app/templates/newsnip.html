@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+tjena
+<br>
+{{content}}
+
+<div class="form">
+<form action="" method="post">
+	{% csrf_token %}
+
+	snippet: {{snip_form.text}}
+	
+	<input type=submit> </input>
+	</form>
+</div>
+
+{% endblock %}
