@@ -9,4 +9,29 @@ AAAAAAAAAAAAAA
 {{content}}
 <br>
 <a href="/newsnip">Ny snippet</a>
+<br>
+<font face='courier'>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+oooooooooo<br>
+<br><br><br>
+</font>
+
+<h3>New Story</h3>
+
+
+{% load bootstrap_toolkit %}
+<form action="" method="post">
+    {% csrf_token %}
+{{story_form|as_bootstrap:"horizontal,float"}}
+    <div class="actions">
+        <button type="submit" class="btn primary">Submit</button>
+    </div>
+</form>
+
 {% endblock %}

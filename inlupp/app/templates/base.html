@@ -2,6 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		{% load static from staticfiles %}
+		<link rel="stylesheet" href="{{STATIC_URL}}bootstrap/docs/assets/css/bootstrap.css">
+		<link rel="stylesheet/less" href="{{STATIC_URL}}bootstrap/less/bootstrap.less">
+		<script src="{{STATIC_URL}}bootstrap/docs/assets/js/bootstrap.js"></script>
 		<title>{{title}}</title>
 	</head>
 

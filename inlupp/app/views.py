@@ -9,8 +9,8 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 
-from app.models import Snippet
-from app.forms import LoginForm, RegForm, SnippetForm
+from app.models import Snippet, Story
+from app.forms import LoginForm, RegForm, SnippetForm, StoryForm
 
 def login_view(request):
 	loginform = LoginForm(request.POST)
@@ -87,11 +87,18 @@ def newsnip(request):
 		return render_to_response("newsnip.html",elem,context_instance=RequestContext(request))
 
 def home(request):
-	print 'home'
 	elem = {
 		'title':'Inloggad!',
 		'content':"Inloggad!",
 	}
+	if request.method=='POST':
+		story_form = StoryForm(request.POST)
+		elem.update({'story_form':story_form,})
+		#handle
+
+	else:
+		story_form = StoryForm()
+		elem.update({'story_form':story_form,})
 	if request.user.is_authenticated():
 		return render_to_response("home.html",elem)
 	else:

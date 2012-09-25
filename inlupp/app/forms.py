@@ -4,7 +4,7 @@
 
 from django import forms
 from django.forms import ModelForm
-from app.models import Snippet
+from app.models import Snippet, Story
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -19,4 +19,9 @@ class RegForm(forms.Form):
 class SnippetForm(ModelForm):
     class Meta:
         model = Snippet
+
+class StoryForm(ModelForm):
+	class Meta:
+		model = Story
+		exclude =('creator',)
 
