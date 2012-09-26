@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+
+<h3>New Story</h3>
+
+{% load bootstrap_toolkit %}
+<form action="" method="post">
+    {% csrf_token %}
+{{story_form|as_bootstrap:"horizontal,float"}}
+    <div class="actions">
+        <button type="submit" class="btn primary">Submit</button>
+    </div>
+</form>
+
+{% endblock %}
