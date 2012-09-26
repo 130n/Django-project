@@ -3,7 +3,6 @@
 
 {{error}}
 {% load bootstrap_toolkit %}
-<br>bootstrap:
 <form action="" method="post">
     {% csrf_token %}
 {{login_form|as_bootstrap:"horizontal,float"}}
@@ -12,19 +11,4 @@
     </div>
 </form>
 
-<br>vanlig:
-<div class="form">
-<form action="" method="post">
-    {% csrf_token %}
-
-    uname: {{login_form.username}}
-    <br>
-    passw: {{login_form.password}}
-    <br>
-    <input type=submit> </input>
-    </form>
-</div>
-
-Inte registrerad?
-<a href="/register">Skapa konto</a>
 {%endblock%}

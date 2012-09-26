@@ -3,7 +3,7 @@
 # Create your views here.
 import datetime
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render_to_response, redirect
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect, HttpResponse
@@ -12,7 +12,15 @@ from django.template import RequestContext
 from app.models import Snippet, Story
 from app.forms import LoginForm, RegForm, SnippetForm, StoryForm
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
 def login_view(request):
+    elem = {
+        'title':'Login',
+    }
+
     if request.method == 'POST':
         loginform = LoginForm(request.POST)
         loginAuth(request)
@@ -24,10 +32,7 @@ def login_view(request):
     # elem.update(csrf(request))
     else:
         loginform = LoginForm()
-    elem = {
-        'title':'Login',
-        'login_form':loginform,
-    }
+    elem.update({'login_form':loginform})
     return render_to_response("login.html",elem,context_instance=RequestContext(request))
     
 def loginAuth(request):
@@ -88,6 +93,34 @@ def newsnip(request):
         elem.update({'snip_form':snip_form,})
         return render_to_response("newsnip.html",elem,context_instance=RequestContext(request))
 
+def newstory(request):
+    elem= {
+    'title':'Ny Story',
+    'content':'waaaaah2',
+    }
+    if request.method=='POST':
+        story_form=StoryForm(request.POST)
+        elem.update({'story_form':story_form,})
+
+        if story_form.is_valid():
+            print story_form.cleaned_data
+            title = request.POST['title']
+            length = request.POST['length']
+            availability = request.POST['availability']
+            language=request.POST['language']
+
+            newstory=Story(created=datetime.datetime.now(),creator=request.user,title=title,length=length,availability=availability,language=language)
+            newstory.save()
+            print newsnip
+            return HttpResponseRedirect('/home')
+        else:
+            print "invalid story_form"
+    else:
+        story_form=StoryForm()
+        elem.update({'story_form':story_form,})
+    return render_to_response("newstory.html",elem,context_instance=RequestContext(request))
+
+
 def home(request):
     elem = {
         'title':'Home',
@@ -98,7 +131,6 @@ def home(request):
         story_form = StoryForm(request.POST)
         elem.update({'story_form':story_form,})
         #handle
-
     else:
         story_form = StoryForm()
         elem.update({'story_form':story_form,})

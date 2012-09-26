@@ -1,27 +1,14 @@
 {% extends "base.html" %}
 {% block body %}
-tjena
-<br>
-{{content}}
-
-<font face='courier'>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-<br><br><br>
-</font>
 
 <div class="form">
 <form action="" method="post">
 	{% csrf_token %}
 
-	snippet: {{snip_form.text}}
-	
+	Din snippet: 
+    <br>
+    {{snip_form.text}}
+	<br>
 	<input type=submit> </input>
 	</form>
 </div>

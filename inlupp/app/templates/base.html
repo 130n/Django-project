@@ -9,7 +9,15 @@
 
 <body>
     <h1>{{title}}</h1>
+    inloggad som: {{user.username}}
+    {% if user.is_active %}
+        
     <br>
+    <a href="/logout">Logga ut</a>
+    <br>
+    
+    {% endif %}
+
     {% block body %}
     {% endblock %}
 </body>

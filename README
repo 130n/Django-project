@@ -1,8 +1,8 @@
 TODO
 
-fixa css - static_url wtf?
-Skapa story
+Snippet ska skapas iom story
+första snippet ska höra till story, alla andra ska ha foreignkey till föregående snippet
 svara story
-lägg till vän
+lägg till vän - dubbellänkad?
 
 Redigera README fil

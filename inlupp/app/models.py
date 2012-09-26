@@ -42,22 +42,23 @@ class Story(models.Model):
         ("Private","Public to read, only friends can write"),
         ("PrivateEX","Only friends can read and write"),
     )
-    LANGUAGES = (
+    STORY_LANGUAGES = (
         ('Sve','Svenska'),
         ('Eng','English'),
         )
     title = models.CharField(max_length=80)
     length = models.IntegerField(choices=LENGTH_CHOICES)
+    created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
-    availability = models.CharField(max_length=1,choices=AVAILABLE_TO)
-    language=models.CharField(max_length=1,choices=LANGUAGES)
+    availability = models.CharField(max_length=9,choices=AVAILABLE_TO)
+    language=models.CharField(max_length=3,choices=STORY_LANGUAGES)
 
     class Meta:
         verbose_name = _('Story')
         verbose_name_plural = _('Storys')
 
     def __unicode__(self):
-        pass
+        return unicode(self.creator) + " - " + unicode(self.title)
     
 
 class Snippet(models.Model):
