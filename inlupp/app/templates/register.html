@@ -4,18 +4,18 @@
 <div class="rubrik">
 Skapa konto
 </div>
-	
+    
 <div class="form">
 <form action="/home/" method="post">
-	{% csrf_token %}
+    {% csrf_token %}
 
-	uname: {{reg_form.username}}
-	<br>
-	passw: {{reg_form.password}}
-	<br>
-	passw conf: {{reg_form.confirm_password}}
-	<br>
-	<input type=submit> </input>
-	</form>
+    uname: {{reg_form.username}}
+    <br>
+    passw: {{reg_form.password}}
+    <br>
+    passw conf: {{reg_form.confirm_password}}
+    <br>
+    <input type=submit> </input>
+    </form>
 </div>
 {% endblock body %}

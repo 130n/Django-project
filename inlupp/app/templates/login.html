@@ -2,17 +2,27 @@
 {% block body %}
 
 {{error}}
+{% load bootstrap_toolkit %}
+<br>bootstrap:
+<form action="" method="post">
+    {% csrf_token %}
+{{login_form|as_bootstrap:"horizontal,float"}}
+    <div class="actions">
+        <button type="submit" class="btn primary">Submit</button>
+    </div>
+</form>
 
+<br>vanlig:
 <div class="form">
 <form action="" method="post">
-	{% csrf_token %}
+    {% csrf_token %}
 
-	uname: {{login_form.username}}
-	<br>
-	passw: {{login_form.password}}
-	<br>
-	<input type=submit> </input>
-	</form>
+    uname: {{login_form.username}}
+    <br>
+    passw: {{login_form.password}}
+    <br>
+    <input type=submit> </input>
+    </form>
 </div>
 
 Inte registrerad?
