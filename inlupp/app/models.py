@@ -9,7 +9,15 @@ from django.contrib import admin
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    description = models.CharField(max_length=80, default=80*'o')
+    face="----------"
+    face+="--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--"
+    face+="--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--"
+    face+="--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--"
+    face+="---&nbsp;&nbsp;&nbsp;&nbsp;---"
+    face+="---&nbsp;&nbsp;&nbsp;&nbsp;---"
+    face+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+    face+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+    description = models.CharField(max_length=80, default=face)
 
 class Friendship(models.Model):
     user =models.ForeignKey(User, related_name='me')
@@ -22,7 +30,8 @@ class Friendship(models.Model):
 
     def __unicode__(self):
         return unicode(self.user) + " - " + unicode(self.friend)
-    
+
+
 
 class Story(models.Model):
     LENGTH_CHOICES=(
@@ -48,37 +57,35 @@ class Story(models.Model):
         )
     title = models.CharField(max_length=80)
     length = models.IntegerField(choices=LENGTH_CHOICES)
-    created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User)
     availability = models.CharField(max_length=9,choices=AVAILABLE_TO)
     language=models.CharField(max_length=3,choices=STORY_LANGUAGES)
-
+    created = models.DateTimeField(auto_now_add=True)
+    #first = models.ForeignKey(Snippet)
     class Meta:
         verbose_name = _('Story')
         verbose_name_plural = _('Storys')
-
     def __unicode__(self):
         return unicode(self.creator) + " - " + unicode(self.title)
-    
 
 class Snippet(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True)
     text = models.TextField(max_length=1)
-
-
+    parent = models.ForeignKey(Story)
     class Meta:
         verbose_name = 'Snippet'
         verbose_name_plural = 'Snippets'
-
     def __unicode__(self):
-        return unicode(self.author) + " - " + unicode(self.text)
-
+        return unicode(self.author) + ": - " + unicode(self.text)
 
 # Admin
 
 class FriendshipAdmin(admin.ModelAdmin):
     pass
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'description']
 
 class StoryAdmin(admin.ModelAdmin):
     pass
@@ -88,7 +95,7 @@ class SnippetAdmin(admin.ModelAdmin):
     list_filter = ['created']
 
 #admin register
-
+admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Snippet, SnippetAdmin)
 admin.site.register(Friendship, FriendshipAdmin)
 admin.site.register(Story, StoryAdmin)

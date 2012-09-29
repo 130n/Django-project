@@ -9,12 +9,13 @@ from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput, label="Your Password")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
 class RegForm(forms.Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput, label="Your Password")
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Repeat")
+    description=forms.CharField(max_length=80,required=False)
 
 class SnippetForm(ModelForm):
     class Meta:

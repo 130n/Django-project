@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body %}
+<br>
+<h3>by {{story.creator}}</h3>
+<br>
+{% for snip in snippets %}
+    {{snip}}
+    <br>
+{% endfor %}
+{% endblock %}

@@ -85,7 +85,8 @@ SECRET_KEY = 'm0auna=ab4r^5(_%i9gs9gx(0!#kdep3hgx9xx7gelho)q#2qs'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -153,3 +154,8 @@ LOGGING = {
         },
     }
 }
+
+from django.conf import global_settings
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.core.context_processors.request",
+)

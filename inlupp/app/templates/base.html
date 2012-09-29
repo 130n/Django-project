@@ -3,11 +3,43 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
-        <script src="{{STATIC_URL}}js/bootstrap.js"></script>
         <title>{{title}}</title>
     </head>
 
 <body>
+{% load tags %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <!--
+
+        -->
+          <a class="brand" href="/home/">TimeForTale</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="{% active request "^/home/" %}"><a href="/home/">Home</a></li>
+              <li class="{% active request "^/newstory/" %}"><a href="/newstory/">Skapa story</a></li>
+              <li class="{% active request "^/newsnip/" %}"><a href="/newsnip/">Ny berättelsebit</a></li>
+
+{% if request.user.is_authenticated %}
+    
+<li class="{% active request "^/logout/" %}"><a href="/logout/">Logga ut</a></li>            
+{% endif %}
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container">
+<a href="/home/" class="brand">TimeForTale</a>
+<div class="span12" style="text-align:center; margin: 0 auto;">
+    <br>
     <h1>{{title}}</h1>
     inloggad som: {{user.username}}
     {% if user.is_active %}
@@ -17,8 +49,11 @@
     <br>
     
     {% endif %}
-
     {% block body %}
     {% endblock %}
+</div><!--span -->
+    </div><!--container -->
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.js"></script>
 </body>
 </html>

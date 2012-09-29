@@ -1,21 +1,13 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="rubrik">
-Skapa konto
-</div>
-    
-<div class="form">
-<form action="/home/" method="post">
+{{error}}
+{% load bootstrap_toolkit %}
+<form class="form-vertical" action="" method="post">
     {% csrf_token %}
-
-    uname: {{reg_form.username}}
-    <br>
-    passw: {{reg_form.password}}
-    <br>
-    passw conf: {{reg_form.confirm_password}}
-    <br>
-    <input type=submit> </input>
-    </form>
-</div>
-{% endblock body %}
+{{reg_form|as_bootstrap}}
+    <div class="actions">
+        <button type="submit" class="btn primary">Skapa konto</button>
+    </div>
+</form>
+{%endblock%}

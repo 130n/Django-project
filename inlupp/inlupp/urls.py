@@ -3,12 +3,13 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from app.views import logout_view, login_view, register, home, newsnip, newstory
+from app.views import logout_view, login_view, register, home, newsnip, newstory, story
 
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'app.views.login', name='login'),
+    url(r'story/(?P<storyID>\d+)$', story),
     url(r'^home/$', home),
     url(r'^logout/$', logout_view),
     url(r'^newsnip/$', newsnip),

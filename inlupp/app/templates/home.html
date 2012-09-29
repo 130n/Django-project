@@ -1,19 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
+<!--
 <a href="/newsnip">Ny snippet</a>
 <br>
 <a href="/newstory">Starta en berättelse</a>
 <br>
-<font face='courier'>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-oooooooooo<br>
-<br><br><br>
-</font>
+-->
+{% for story in stories %}
+    <a href="/story/{{story.id}}">
+    {{story}}
+    </a>
+    <br>
+{% endfor %}
 {% endblock %}

@@ -7,8 +7,8 @@
     {% csrf_token %}
 {{login_form|as_bootstrap:"horizontal,float"}}
     <div class="actions">
-        <button type="submit" class="btn primary">Submit</button>
+        <button type="submit" class="btn primary">Logga in</button>
     </div>
 </form>
-
+<a href="/register">Skapa ett konto</a>
 {%endblock%}
