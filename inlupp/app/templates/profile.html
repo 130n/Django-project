@@ -1,0 +1,46 @@
+{# Leon Hennings 880827-0154 #}
+{% extends "base.html" %}
+{% block body %}
+
+{% load bootstrap_toolkit %}
+        <div class="row">
+            <div class="row">
+                    <div class="offset5 span4">
+                        <div id="avatar">
+                            {{profile|safe}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset4 span4 " style="align:left;">
+                            Användarnamn: {{userdata.username}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset4 span4 ">
+                            Mail: {{userdata.email}}
+                    </div>
+            </div>
+        </div>
+{% if not_friend %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="actions">
+        <button type="submit" class="btn primary">
+            LÄGG TILL VÄN
+        </button>
+    </div>
+</form>
+{% else %}
+{% ifequal request.user userdata %}
+Det Är ju du!
+{% else %}
+VÄN
+{% endifequal %}
+{% endif %}
+
+
+<br>
+
+
+{% endblock %}

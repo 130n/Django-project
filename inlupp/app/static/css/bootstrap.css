@@ -1,4 +1,6 @@
 /*!
+ * Leon Hennings 880827-0154
+ *
  * Bootstrap v2.1.1
  *
  * Copyright 2012 Twitter, Inc
@@ -163,7 +165,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #ffffc0;
 }
 
 a {
@@ -773,7 +775,7 @@ dd {
 }
 
 hr {
-  margin: 20px 0;
+  /*margin: 20px 0;*/
   border: 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #ffffff;
@@ -5772,3 +5774,26 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+
+#avatar {
+  word-wrap:break-word; 
+  line-height:14px; 
+  border-style:dashed; 
+  border-width:1px; 
+  width:100px;
+  float: right;
+}
+/*.name {
+  word-wrap:break-word; 
+  position:relative; 
+  left:200px; 
+  line-height:14px; 
+  border-style:none; 
+  border-width:1px; 
+  width:100px;
+}
+.snip {
+position: absolute;
+top: -75px;
+right: 100px;
+}*/

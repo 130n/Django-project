@@ -1,16 +1,25 @@
+{# Leon Hennings 880827-0154 #}
 {% extends "base.html" %}
 {% block body %}
-<br>
-<!--
-<a href="/newsnip">Ny snippet</a>
-<br>
-<a href="/newstory">Starta en berättelse</a>
-<br>
--->
 {% for story in stories %}
     <a href="/story/{{story.id}}">
-    {{story}}
+    {{story.title}}
     </a>
+    av
+    <a href="/profile/{{story.creator.id}}">
+    {{story.creator}}
+    </a> 
     <br>
+    {{story.category}}
+    <br>
+    {{story.created}}
+    <hr width="25%">
 {% endfor %}
+    {% if next_page > 1 %}
+        <a href="/home/{{prev_page}}/">prev
+        </a>
+    {% endif %}
+    <a href="/home/{{next_page}}/">
+    Next
+    </a>
 {% endblock %}

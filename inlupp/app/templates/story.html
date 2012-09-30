@@ -1,10 +1,34 @@
+{# Leon Hennings 880827-0154 #}
 {% extends "base.html" %}
 {% block body %}
-<br>
 <h3>by {{story.creator}}</h3>
-<br>
 {% for snip in snippets %}
-    {{snip}}
-    <br>
+<div class="row">
+    <div class="row">
+        <div class='offset3 span'>
+            <div id="avatar">
+                   {{snip.author.get_profile|safe}}
+            </div>
+        </div>
+        <div class="span4"> 
+        
+
+            <span style="float: left;">{{snip.sequence}} 
+            <a href="/profile/{{snip.author.id}}">
+            {{snip.author}}</a> : 
+            <br>
+            {{snip.text}} 
+            </span>
+        </div>
+    </div>   
+</div>   
+        <div class='row'>
+            <HR class="center" width="25%" size"1" color="black">
+       </div>
 {% endfor %}
+
+
+{% block new %}
+    
+{% endblock new %}
 {% endblock %}

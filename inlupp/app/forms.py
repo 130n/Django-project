@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Leon Hennings 880827-0154
 #FORMS
-
 from django import forms
 from django.forms import ModelForm
-from app.models import Snippet, Story
+from app.models import Snippet, Story, Friendship
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -20,9 +20,9 @@ class RegForm(forms.Form):
 class SnippetForm(ModelForm):
     class Meta:
         model = Snippet
+        exclude =('story','sequence','author')
 
 class StoryForm(ModelForm):
 	class Meta:
 		model = Story
 		exclude =('creator',)
-

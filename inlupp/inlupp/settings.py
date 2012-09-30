@@ -1,3 +1,4 @@
+# Leon Hennings 880827-0154
 # Django settings for inlupp project.
 
 DEBUG = True
@@ -159,3 +160,4 @@ from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
 )
+AUTH_PROFILE_MODULE = 'app.UserProfile'

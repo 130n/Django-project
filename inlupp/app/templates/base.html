@@ -1,3 +1,4 @@
+{# Leon Hennings 880827-0154 #}
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -22,13 +23,26 @@
           <a class="brand" href="/home/">TimeForTale</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="{% active request "^/home/" %}"><a href="/home/">Home</a></li>
-              <li class="{% active request "^/newstory/" %}"><a href="/newstory/">Skapa story</a></li>
-              <li class="{% active request "^/newsnip/" %}"><a href="/newsnip/">Ny berättelsebit</a></li>
+            
+            <li class="{% active request "^/home/" %}">
+                <a href="/home/">Home</a>
+            </li>
+            
+            <li class="{% active request "^/newstory/" %}">
+                <a href="/newstory/">Skapa berättelse</a>
+            </li>
+            
+            <li class="{% active request "^/friends/" %}">
+                <a href="/friends/">Vänner</a>
+            </li>
 
 {% if request.user.is_authenticated %}
     
-<li class="{% active request "^/logout/" %}"><a href="/logout/">Logga ut</a></li>            
+<li class="{% active request "^/profile/\d+" %}">
+    <a href="/profile/{{user.id}}">Profil</a>
+</li>
+
+<li class="{% active request "^/logout/" %}"><a href="/logout/">Logga ut {{user.username}}</a></li>            
 {% endif %}
 
             </ul>
@@ -41,14 +55,7 @@
 <div class="span12" style="text-align:center; margin: 0 auto;">
     <br>
     <h1>{{title}}</h1>
-    inloggad som: {{user.username}}
-    {% if user.is_active %}
-        
-    <br>
-    <a href="/logout">Logga ut</a>
-    <br>
     
-    {% endif %}
     {% block body %}
     {% endblock %}
 </div><!--span -->
