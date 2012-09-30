@@ -1,18 +1,23 @@
 {# Leon Hennings 880827-0154 #}
 Dokumentation
 
+ADMIN:
+användarnamn leon
+lösenord leon 
+
+SETUP:
+Projektet använder django 1.4, twitter bootstrap och en django implementation av twitter bootstrap formulär som kallas django bootstrap.
+Databasen som används är SqLite3. för den givna databasen är användarnamn och lösenord leon.
+
 INLEDNING
 Mitt projekt heter TimeForTale och går ut på att användare ska kunna skriva berättelser tillsammans.
 Detta görs genom att man skriver meddelanden av begränsad längd i en ordnad följd.
-
-Projektet använder django 1.4, twitter bootstrap och en django implementation av twitter bootstrap formulär som kallas django bootstrap.
 
 Jag har dessutom använt en template context processor som heter request (django.core.context_processors.request) vilken gör requestobjekt tillgängliga i templates. Detta för att göra det möjligt att lägga till en egen templatetag (inlupp.app.templatetags.tags). Den används sedan i base.html för att baserat på sökvägen ange vilken menyflik som är aktiv.
 
 Alla mina templates ligger i inlupp.app.templates och alla ärver utav base.html utom newsnippet.html som ärver av story.html.
 
 Jag hade den fiffiga idén att låta användarna ge en beskrivning på max 80 tecken vilken sedan skulle linewrappas utan hänsyn till ord och agera som avatar. Eftersom sidan kretsar kring texter kändes detta passande till temat. 
-
 
 STRUKTUR/TEMPLATES
 Sidan består av:
@@ -48,7 +53,7 @@ UserProfile:
 
 Story
     Har en titel, främmande nyckel till användaren som skrivit den, datumfält och fyra valbara: 
-        -tillgänglighet, vilka som ska kunna se och göra tillägg till berättelsen.
+        -tillgänglighet, vilken inte används än men ska avgöra vilka som ska kunna se och göra tillägg . till berättelsen. I alpha releasen är alla berättelser public. 
         -kategorier
         -språk
         -längd på berättelsen i antal bokstäver
@@ -77,3 +82,8 @@ ModelForm - skapas automatiskt baserat på en modell
 
 Friendship modellen behövde inget formulär då all data som behövs är tillgänglig i requestet.
 
+SAMMANFATTNING
+
+De saker jag gjort som jag anser ligger utanför kursens innehåll (i enlighet med betygskriterier) är:
+    -användning av twitter bootstrap och django bootstrap. Användning av CSS var förövrigt meckigare än väntat i django.
+    -implementationen av egen template tag för att reda ut vissa av dessa svårigheter.

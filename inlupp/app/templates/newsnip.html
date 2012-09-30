@@ -1,14 +1,14 @@
 {% extends "story.html" %}
 {% block new %}
+<br>
+<!-- utöka med javascript-->
+Tecken kvar på berättelsen: {{chars_left}}
 
 {% load bootstrap_toolkit %}
 
 <div class="form">
 <form action="" method="post">
 	{% csrf_token %}
-    Din snippet: 
-    <br>
-
     {{snip_form|as_bootstrap}}
 	<br>
 	<input type=submit> </input>

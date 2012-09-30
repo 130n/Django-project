@@ -13,11 +13,13 @@ class LoginForm(forms.Form):
 
 class RegForm(forms.Form):
     username = forms.CharField(max_length=100)
+    mail = forms.EmailField(required=False)
     password = forms.CharField(widget=forms.PasswordInput, label="Your Password")
     confirm_password = forms.CharField(widget=forms.PasswordInput, label="Repeat")
     description=forms.CharField(max_length=80,required=False)
 
 class SnippetForm(ModelForm):
+    text = forms.CharField(widget=forms.Textarea, label='Skriv snippet: ',max_length=300)
     class Meta:
         model = Snippet
         exclude =('story','sequence','author')
@@ -25,4 +27,4 @@ class SnippetForm(ModelForm):
 class StoryForm(ModelForm):
 	class Meta:
 		model = Story
-		exclude =('creator',)
+		exclude =('creator','availability')

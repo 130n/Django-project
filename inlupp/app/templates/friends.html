@@ -3,9 +3,12 @@
 {% block body %}
 
 {% load bootstrap_toolkit %}
-{% for f in friends %}
+{% for f in fr %}
     <p>
-        <div class="offset5 span"style="float:left;"><a href="/profile/{{f.id}}">{{f}}</a></div>
+        <div class="offset4 span"style="float:left;">
+            <a href="/profile/{{f.id}}">{{f.friend}}</a>
+            sedan {{f.created}}
+        </div>
         <br>
     </p>
 {% endfor %}

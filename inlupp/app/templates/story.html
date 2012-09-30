@@ -1,7 +1,26 @@
 {# Leon Hennings 880827-0154 #}
 {% extends "base.html" %}
 {% block body %}
-<h3>by {{story.creator}}</h3>
+<h3>
+    {% ifequal story.language "Eng" %}
+    by 
+    {%else%}
+    av
+    {% endifequal %}
+    {{story.creator}}</h3>
+    Kategori: {{story.category}} 
+{{chars_used}} tecken skrivna av {{story.length}}
+<br>
+Antal tecken kvar: {{chars_left}}
+    <hr>
+{% if error %}
+<font style="color:red;">
+Berättelsen hade inte plats för:
+<br>
+{{error}}
+    <hr>
+</font>
+{% endif %}
 {% for snip in snippets %}
 <div class="row">
     <div class="row">
@@ -10,20 +29,19 @@
                    {{snip.author.get_profile|safe}}
             </div>
         </div>
-        <div class="span4"> 
-        
-
-            <span style="float: left;">{{snip.sequence}} 
+        <div class="span4" style="text-align: left;word-wrap:break-word; float: left;"> 
+                {{snip.sequence}} 
             <a href="/profile/{{snip.author.id}}">
             {{snip.author}}</a> : 
             <br>
-            {{snip.text}} 
-            </span>
+            <p>
+                {{snip.text}} 
+            </p>
         </div>
     </div>   
 </div>   
         <div class='row'>
-            <HR class="center" width="25%" size"1" color="black">
+            <div class="offset2 span8"><HR class="center" width="100%" size"1" color="black"></div>
        </div>
 {% endfor %}
 

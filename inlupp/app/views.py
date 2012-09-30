@@ -79,8 +79,9 @@ def reg_new(request):
         print request.POST
         username=request.POST['username']
         password=request.POST['password']
+        mail =request.POST['mail']
         description=request.POST['description']
-        u=User.objects.create_user(username,None,password)
+        u=User.objects.create_user(username,mail,password)
         fill=80-len(description)
         if fill==80:
             usr_desc=UserProfile(user=u)
@@ -99,7 +100,6 @@ def newstory(request):
     if request.user.is_authenticated():
         elem= {
         'title':'Ny Story',
-        'content':'waaaaah2',
         }
         if request.method=='POST':
             story_form=StoryForm(request.POST)
@@ -107,12 +107,16 @@ def newstory(request):
 
             if story_form.is_valid():
                 print story_form.cleaned_data
-                title = request.POST['title']
+                title = request.POST['t1itle']
                 length = request.POST['length']
-                availability = request.POST['availability']
+                if request.POST.get('availability'):   
+                    availability = request.POST['availability']
+                else:
+                    availability="Public"
                 language=request.POST['language']
+                category=request.POST['category']
 
-                newstory=Story(created=datetime.datetime.now(),creator=request.user,title=title,length=length,availability=availability,language=language)
+                newstory=Story(created=datetime.datetime.now(),creator=request.user,title=title,length=length,availability=availability,language=language,category=category)
                 newstory.save()
                 return HttpResponseRedirect('/home')
             else:
@@ -131,7 +135,7 @@ def home(request, next=0):
         prev_page = int(next)-1
     next_page = int(next)+1
 
-    stories = Story.objects.filter(availability="Public" or "Private").order_by('-created')[(next_page-1)*10:(next_page-1)*10+9]
+    stories = Story.objects.filter(availability="Public" or "Private").order_by('-created')[(next_page-1)*10:(next_page-1)*10+10]
     # .order_by('created')
     # [:1]
     # paginator = Paginator(stories, 25)
@@ -177,6 +181,7 @@ def profile(request,userID):
 def story(request,storyID):
     if request.user.is_authenticated():
         story = Story.objects.get(id=storyID)
+        print story.category
         new_sequence = Snippet.objects.filter(story=story).count()+1
         already_taken = Snippet.objects.filter(story=story,sequence=new_sequence)
 
@@ -185,19 +190,32 @@ def story(request,storyID):
             return HttpResponseRedirect('')
 
         snippets = Snippet.objects.filter(story=story)
+        chars_left=story.length
+        for s in snippets:
+            chars_left-=len(s.text)
         snip_form=SnippetForm()
+        chars_used=story.length-chars_left
         elem= {
             'title':story.title,
             'story':story,
             'snippets':snippets,
             'snip_form':snip_form,
+            'chars_left':chars_left,
+            'chars_used':chars_used,
         }
         if request.method=='POST':
                 snip_form=SnippetForm(request.POST)
                 elem.update({'snip_form':snip_form,})
+                framtida_chars_left = chars_left-len(request.POST['text'])
+                if 0>framtida_chars_left:
+                    print "för många tecken"+str(framtida_chars_left)
+                    print story.length
+                    #okokokok
+                    elem.update({'error':(request.POST['text'])})
+                    return render_to_response("newsnip.html",elem,context_instance=RequestContext(request))
                 if snip_form.is_valid():
                     print snip_form.cleaned_data
-                    newsnip=Snippet(created=datetime.datetime.now(),author=request.user,text=request.POST['text'],story=story,sequence=new_sequence)
+                    newsnip=Snippet(created=datetime.datetime.now(),author=request.user,text=snip_form.cleaned_data['text'],story=story,sequence=new_sequence)
                     newsnip.save()
                     return HttpResponseRedirect('')
                 else:
@@ -213,10 +231,12 @@ def story(request,storyID):
 
 def friends(request):
     if request.user.is_authenticated():
+        fr = Friendship.objects.filter(user=request.user)
         friends = [friendship.friend for friendship in request.user.me.all()]
         elem= {
             'title':'Dina vänner',
             'friends':friends,
+            'fr':fr,
         }
         return render_to_response("friends.html",elem,context_instance=RequestContext(request))
     else:

@@ -68,7 +68,7 @@ class Story(models.Model):
     creator = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
     length = models.IntegerField(choices=LENGTH_CHOICES)
-    availability = models.CharField(max_length=9,choices=AVAILABLE_TO)
+    availability = models.CharField(max_length=9,choices=AVAILABLE_TO,blank=True, null=True)
     category=models.CharField(max_length=13,choices=CATEGORY)
     language=models.CharField(max_length=3,choices=STORY_LANGUAGES)
     #first = models.ForeignKey(Snippet)

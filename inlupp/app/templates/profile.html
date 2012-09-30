@@ -12,30 +12,40 @@
                     </div>
                 </div>
         </div>
-                <div class="row">
-                <div class="row">
-        <div style="float:right;">
-                </div>
-                    <div class="offset5 span "style="float:left;">
-                            Mail: {{userdata.email}}
-                    </div>
+<div class="row">
+    <div class="offset4 span3">
+                Mail: <a href="mailto:{{userdata.email}}">{{userdata.email}}</a>
+         <div style="float:left;">
+        </div>
+    </div>
                     
+</div>
+<div class="row">
 {% if not_friend %}
+{% ifnotequal request.user userdata %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="actions">
-        <button type="submit" class="btn">
-            LÄGG TILL VÄN
-        </button>
-    </div>
-</form>
-{% else %}
-{% ifequal request.user userdata %}
-Det Är ju du!
-{% else %}
-VÄN
-{% endifequal %}
-{% endif %}
+        <div style="float:left;">
+            <div class="offset4 span3">
+            <button type="submit" class="btn">
+                LÄGG TILL VÄN
+            </button>
             </div>
         </div>
+    </div>
+</form>
+{% endifnotequal %}
+{% else %}
+{% ifequal request.user userdata %}
+<div class="offset4 span3">
+Det Är ju du!
+</div>
+{% else %}
+<div class="offset4 span3">
+{{userdata.username}} är din vän
+</div>
+{% endifequal %}
+{% endif %}
+</div>
 {% endblock %}
