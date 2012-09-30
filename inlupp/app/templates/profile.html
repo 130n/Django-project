@@ -5,28 +5,26 @@
 {% load bootstrap_toolkit %}
         <div class="row">
             <div class="row">
-                    <div class="offset5 span4">
+                    <div class="offset5 span">
                         <div id="avatar">
                             {{profile|safe}}
                         </div>
                     </div>
                 </div>
+        </div>
                 <div class="row">
-                    <div class="offset4 span4 " style="align:left;">
-                            Användarnamn: {{userdata.username}}
-                    </div>
+                <div class="row">
+        <div style="float:right;">
                 </div>
-                <div class="row">
-                    <div class="offset4 span4 ">
+                    <div class="offset5 span "style="float:left;">
                             Mail: {{userdata.email}}
                     </div>
-            </div>
-        </div>
+                    
 {% if not_friend %}
 <form action="" method="post">
     {% csrf_token %}
     <div class="actions">
-        <button type="submit" class="btn primary">
+        <button type="submit" class="btn">
             LÄGG TILL VÄN
         </button>
     </div>
@@ -38,9 +36,6 @@ Det Är ju du!
 VÄN
 {% endifequal %}
 {% endif %}
-
-
-<br>
-
-
+            </div>
+        </div>
 {% endblock %}

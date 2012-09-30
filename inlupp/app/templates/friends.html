@@ -5,9 +5,8 @@
 {% load bootstrap_toolkit %}
 {% for f in friends %}
     <p>
-        vän: <a href="/profile/{{f.id}}">{{f}}</a>
+        <div class="offset5 span"style="float:left;"><a href="/profile/{{f.id}}">{{f}}</a></div>
         <br>
     </p>
 {% endfor %}
-<!--endfor -->
 {% endblock %}
