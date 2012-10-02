@@ -25,21 +25,21 @@ Jag hade den fiffiga idén att låta användarna ge en beskrivning på max 80 te
 Sidan består av:
 *För icke inloggade:
     *Loginsida(login.html): 
-        logga in & länk till skapa konto
+        *logga in & länk till skapa konto
     *Skapa konto sida(register.html): 
-        skapa konto och loggas in
+        *skapa konto och loggas in
 *För inloggade användare:
     *Home(home.html): 
-        Visar de senaste listorna, länkar till berättelser och deras skapares 
+        *Visar de senaste listorna, länkar till berättelser och deras skapares 
     *enskilda berättelser(story.html):
-        nås via länkar från home. Här postas textstyckena som utgör berättelserna och länkar finns till de olika författarnas profilsidor.
+        *nås via länkar från home. Här postas textstyckena som utgör berättelserna och länkar finns till de olika författarnas profilsidor.
     *Skapa berättelse:
     *Vänner(friends.html):
-        länkar till alla vänners användarprofiler
+        *länkar till alla vänners användarprofiler
     *Profil(profile.html):
-        användarens beskrivning och namn
+        *användarens beskrivning och namn
     *Utloggning:
-        förstör sessionen och skickar tillbaka användaren till login.
+        *förstör sessionen och skickar tillbaka användaren till login.
 *För administratörer:
     *djangos.contrib.admin, djangos inbyggda admin gränssnitt.
 
