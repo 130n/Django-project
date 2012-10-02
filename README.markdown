@@ -1,5 +1,4 @@
-{# Leon Hennings 880827-0154 #}
-Dokumentation
+##Dokumentation
 
 ADMIN:
 användarnamn leon
