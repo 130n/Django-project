@@ -1,14 +1,14 @@
 #Dokumentation
 
 ##ADMIN
-användarnamn leon
-lösenord leon 
+användarnamn leon  
+lösenord leon
 
 ##SETUP
 Projektet använder django 1.4, twitter bootstrap och en django implementation av twitter bootstrap formulär som kallas django bootstrap.
 Databasen som används är SqLite3. för den givna databasen är användarnamn och lösenord leon.
-Sidan körs igång med kommandot:
-python manage.py runserver 0.0.0.0:8000
+Sidan körs igång med kommandot:  
+    python manage.py runserver 0.0.0.0:8000
 innifrån mappen inlupp 
 
 ##INLEDNING
