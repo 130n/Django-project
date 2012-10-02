@@ -1,17 +1,17 @@
-##Dokumentation
+#Dokumentation
 
-ADMIN:
+##ADMIN
 användarnamn leon
 lösenord leon 
 
-SETUP:
+##SETUP
 Projektet använder django 1.4, twitter bootstrap och en django implementation av twitter bootstrap formulär som kallas django bootstrap.
 Databasen som används är SqLite3. för den givna databasen är användarnamn och lösenord leon.
 Sidan körs igång med kommandot:
 python manage.py runserver 0.0.0.0:8000
 innifrån mappen inlupp 
 
-INLEDNING
+##INLEDNING
 Mitt projekt heter TimeForTale och går ut på att användare ska kunna skriva berättelser tillsammans.
 Detta görs genom att man skriver meddelanden av begränsad längd i en ordnad följd.
 
@@ -21,7 +21,7 @@ Alla mina templates ligger i inlupp.app.templates och alla ärver utav base.html
 
 Jag hade den fiffiga idén att låta användarna ge en beskrivning på max 80 tecken vilken sedan skulle linewrappas utan hänsyn till ord och agera som avatar. Eftersom sidan kretsar kring texter kändes detta passande till temat. 
 
-STRUKTUR/TEMPLATES
+##STRUKTUR/TEMPLATES
 Sidan består av:
     För icke inloggade:
         -Loginsida(login.html): 
@@ -44,7 +44,7 @@ Sidan består av:
         -djangos.contrib.admin, djangos inbyggda admin gränssnitt.
 
 
-MODELLER:
+#MODELLER:
 
 django.contrib.auth.models.User:
     djangos inbyggda User klass
@@ -69,7 +69,7 @@ Friendship
 Alla fyra modeller har en varsin admin.ModelAdmin klass för att göra dem tillgängliga i admin gränssnittet.
 
 
-FORMS:
+#FORMS:
 
 Vanliga forms:
     LoginForm:
@@ -84,7 +84,7 @@ ModelForm - skapas automatiskt baserat på en modell
 
 Friendship modellen behövde inget formulär då all data som behövs är tillgänglig i requestet.
 
-SAMMANFATTNING
+#SAMMANFATTNING
 
 De saker jag gjort som jag anser ligger utanför kursens innehåll (i enlighet med betygskriterier) är:
     -användning av twitter bootstrap och django bootstrap. Användning av CSS var förövrigt meckigare än väntat i django.
