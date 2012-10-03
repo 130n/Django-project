@@ -107,7 +107,7 @@ def newstory(request):
 
             if story_form.is_valid():
                 print story_form.cleaned_data
-                title = request.POST['t1itle']
+                title = request.POST['title']
                 length = request.POST['length']
                 if request.POST.get('availability'):   
                     availability = request.POST['availability']
