@@ -7,6 +7,17 @@ lösenord leon
 ##SETUP
 Projektet använder django 1.4, twitter bootstrap och en django implementation av twitter bootstrap formulär som kallas django bootstrap.
 Databasen som används är SqLite3. för den givna databasen är användarnamn och lösenord leon.
+
+Klona projektet och sätt upp miljön:
+
+    > git clone https://github.com/130n/Django-project.git
+    > cd Django-project/inlupp
+    > pip install virtualenv
+    > virtualenv env
+    > source ./env/bin/activate
+    > pip install django==1.4
+    > pip install django-bootstrap-toolkit
+
 Sidan körs igång med kommandot:  
 
     python manage.py runserver 0.0.0.0:8000  
